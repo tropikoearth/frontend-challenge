@@ -1,3 +1,4 @@
+import { Providers } from "@/shared/providers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -18,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" className={inter.className}>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
