@@ -1,5 +1,5 @@
 import Image from "next/image";
-import * as S from "./style";
+import * as S from "./styles";
 import Tropiko from "@/assets/tropiko.svg";
 
 const Header = () => {
