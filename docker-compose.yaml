@@ -1,0 +1,13 @@
+services:
+  frontend:
+    command: npm run dev
+    container_name: frontend-tropiko-app
+    environment:
+      MAPBOX_TOKEN: $MAPBOX_TOKEN
+
+    image: node:20-alpine
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/usr/src
+    working_dir: /usr/src
