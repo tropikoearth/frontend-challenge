@@ -88,3 +88,8 @@ export const SubItem = styled(Text)`
   color: #667085;
   width: 176px;
 `;
+
+export const NotFound = styled(Text)`
+  text-overflow: inherit;
+  white-space: normal;
+`;
