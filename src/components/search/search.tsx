@@ -5,6 +5,7 @@ import * as S from "./styles";
 
 import SearchIcon from "@/assets/search-icon.svg";
 import CancelIcon from "@/assets/cancel-icon.svg";
+import MapBox from "../mapbox";
 
 type Props = {
   value: string;
@@ -20,22 +21,29 @@ const Search = ({
   value,
 }: Props) => {
   return (
-    <S.Container>
-      <S.IconSearchContainer>
-        <Image src={SearchIcon} alt="Icone de busca" />
-      </S.IconSearchContainer>
-      <S.Input
-        value={value}
-        onChange={handleChange}
-        placeholder="Procurar o nome de uma propriedade"
-        onKeyUp={handleSearch}
-      />
-      {value ? (
-        <S.IconCancelContainer onClick={handleClearInput}>
-          <Image src={CancelIcon} alt="Limpar input" />
-        </S.IconCancelContainer>
-      ) : null}
-    </S.Container>
+    <>
+      <S.Container>
+        <S.InputContainer>
+          <S.IconSearchContainer>
+            <Image src={SearchIcon} alt="Icone de busca" />
+          </S.IconSearchContainer>
+          <S.Input
+            value={value}
+            onChange={handleChange}
+            placeholder="Procurar o nome de uma propriedade"
+            onKeyUp={handleSearch}
+          />
+          {value ? (
+            <S.IconCancelContainer onClick={handleClearInput}>
+              <Image src={CancelIcon} alt="Limpar pesquisa" />
+            </S.IconCancelContainer>
+          ) : null}
+        </S.InputContainer>
+      </S.Container>
+      <S.ContainerMap>
+        <MapBox />
+      </S.ContainerMap>
+    </>
   );
 };
 

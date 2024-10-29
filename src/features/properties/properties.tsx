@@ -1,14 +1,15 @@
 import { ChangeEvent, KeyboardEvent, useCallback } from "react";
 
-import Data from "../../../properties.json";
-
 import * as S from "./styles";
 
 import { List } from "@/components/list";
 import { Search } from "@/components/search";
 import { useSearchContext } from "@/contexts/search-context";
+import useGetProperties from "@/hooks/use-get-properties";
 
 const Properties = () => {
+  const { data, searchProperty, clearSearch } = useGetProperties();
+
   const { setSearch, search } = useSearchContext();
 
   const handleChangeInput = useCallback(
@@ -21,22 +22,20 @@ const Properties = () => {
   const handleSearchInput = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
       if (event.key === "Enter") {
-        //TODO : Event to hande Search in input
-        console.log(search);
-
-        return;
+        searchProperty(search);
       }
     },
-    [search]
+    [search, searchProperty]
   );
 
   const handleClearInput = useCallback(() => {
     setSearch("");
-  }, [setSearch]);
+    clearSearch();
+  }, [clearSearch, setSearch]);
 
   return (
     <S.Container>
-      <List data={Data} />
+      <List data={data} />
       <Search
         value={search}
         handleClearInput={handleClearInput}

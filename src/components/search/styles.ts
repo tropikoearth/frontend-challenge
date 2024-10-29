@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const InputContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: start;
@@ -8,6 +8,16 @@ export const Container = styled.div`
   height: 64px;
   gap: 12px;
   border-bottom: 0.5px solid #eaecf0;
+`;
+
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 64px;
+  gap: 12px;
+  flex-direction: column;
 `;
 
 export const IconSearchContainer = styled.div`
@@ -31,4 +41,9 @@ export const IconCancelContainer = styled.a`
   margin-right: 25px;
   position: absolute;
   right: 0;
+`;
+
+export const ContainerMap = styled.div`
+  display: flex;
+  justify-content: center;
 `;
