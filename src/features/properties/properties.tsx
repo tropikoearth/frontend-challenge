@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useCallback } from "react";
+import { ChangeEvent, KeyboardEvent, useCallback, useEffect } from "react";
 
 import * as S from "./styles";
 
@@ -6,11 +6,14 @@ import { List } from "@/components/list";
 import { Search } from "@/components/search";
 import { useSearchContext } from "@/contexts/search-context";
 import useGetProperties from "@/hooks/use-get-properties";
+import useDebounce from "@/hooks/use-debounce";
 
 const Properties = () => {
   const { data, searchProperty, clearSearch } = useGetProperties();
 
   const { setSearch, search } = useSearchContext();
+
+  const debouncedValue = useDebounce(search);
 
   const handleChangeInput = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +35,18 @@ const Properties = () => {
     setSearch("");
     clearSearch();
   }, [clearSearch, setSearch]);
+
+  useEffect(() => {
+    if (!search) {
+      clearSearch();
+    }
+  }, [clearSearch, search, setSearch]);
+
+  useEffect(() => {
+    if (search) {
+      searchProperty(debouncedValue);
+    }
+  }, [debouncedValue, search, searchProperty]);
 
   return (
     <S.Container>
