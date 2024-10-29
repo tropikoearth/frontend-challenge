@@ -1,7 +1,12 @@
+import { Position } from "geojson";
+
 export type Data = {
-  items: {
-    id: string;
-    name: string;
-    projects: object[];
-  }[];
-};
+  id: string;
+  name: string;
+  projects: object[];
+  map_data: {
+    geometry: {
+      coordinates: Position[][];
+    };
+  };
+}[];
